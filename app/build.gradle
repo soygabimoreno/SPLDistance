@@ -1,8 +1,22 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
+    Properties properties = new Properties()
+    properties.load(project.file('../local.properties').newDataInputStream())
+
+    signingConfigs {
+        release {
+            storeFile file(properties.getProperty('keystore.storeFile'))
+            storePassword properties.getProperty('keystore.storePassword')
+            keyAlias properties.getProperty('keystore.keyAlias')
+            keyPassword properties.getProperty('keystore.keyPassword')
+        }
+    }
+
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
@@ -16,9 +30,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    bundle {
+        density { enableSplit true }
+        abi { enableSplit true }
+        language { enableSplit false }
+    }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            splits.abi.enable = false
+            splits.density.enable = false
+            ext.enableCrashlytics = false
+        }
         release {
             minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,6 +64,16 @@ dependencies {
     implementation 'org.koin:koin-androidx-scope:2.1.6'
     implementation 'org.koin:koin-androidx-viewmodel:2.1.6'
 
+    implementation "io.arrow-kt:arrow-core:0.10.5"
+    implementation "io.arrow-kt:arrow-syntax:0.10.5"
+    kapt "io.arrow-kt:arrow-meta:0.10.5"
+
     testImplementation 'junit:junit:4.13'
     testImplementation "io.mockk:mockk:1.10.0"
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+}
+
+apply plugin: 'com.google.gms.google-services'
