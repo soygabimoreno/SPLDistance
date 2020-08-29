@@ -12,10 +12,14 @@ class MainViewModel(
     private var _attenuation = MutableLiveData<Float>()
     val attenuation: LiveData<Float> = _attenuation
 
+    init {
+        _attenuation.value = 0f
+    }
+
     fun handleDistanceChanged(input: CharSequence?) {
         calculateAttenuation(input)
             .fold({
-                // Do nothing
+                _attenuation.value = 0f
             }, { attenuation ->
                 _attenuation.value = attenuation
             })
