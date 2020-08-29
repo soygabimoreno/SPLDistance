@@ -11,7 +11,7 @@ class CalculateAttenuation {
 
     operator fun invoke(input: CharSequence?): Either<Throwable, Float> {
         return if (input.isFilled()) {
-            val rawResult = -20 * log10(input.toString().toDouble())
+            val rawResult = 20 * log10(input.toString().toDouble())
             val formattedResult = (round(rawResult * 10) / 10).toFloat()
             Either.right(formattedResult)
         } else {

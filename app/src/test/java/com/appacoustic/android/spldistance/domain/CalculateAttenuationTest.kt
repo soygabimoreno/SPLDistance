@@ -15,7 +15,7 @@ class CalculateAttenuationTest {
             .fold({
                 fail("")
             }, {
-                assertTrue(Float.POSITIVE_INFINITY == it)
+                assertTrue(Float.NEGATIVE_INFINITY == it)
             })
     }
 
@@ -28,7 +28,7 @@ class CalculateAttenuationTest {
             .fold({
                 fail("")
             }, {
-                assertTrue(-0f == it)
+                assertTrue(0f == it)
             })
     }
 
@@ -41,7 +41,7 @@ class CalculateAttenuationTest {
             .fold({
                 fail("")
             }, {
-                assertTrue(-6f == it)
+                assertTrue(6f == it)
             })
     }
 }
