@@ -14,9 +14,34 @@ class CalculateAttenuationTest {
         calculateAttenuation(distance)
             .fold({
                 fail("")
-            },
-                {
-                    assertTrue(Float.POSITIVE_INFINITY == it)
-                })
+            }, {
+                assertTrue(Float.POSITIVE_INFINITY == it)
+            })
+    }
+
+    @Test
+    fun `A distance of 1 meter generates an attenuation of -0 dB`() {
+        val distance = "1"
+        val calculateAttenuation = CalculateAttenuation()
+
+        calculateAttenuation(distance)
+            .fold({
+                fail("")
+            }, {
+                assertTrue(-0f == it)
+            })
+    }
+
+    @Test
+    fun `A distance of 2 meters generates an attenuation of -3 dB`() {
+        val distance = "2"
+        val calculateAttenuation = CalculateAttenuation()
+
+        calculateAttenuation(distance)
+            .fold({
+                fail("")
+            }, {
+                assertTrue(-6f == it)
+            })
     }
 }
