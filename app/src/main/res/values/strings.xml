@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SPL Distance</string>
+    <string name="distance_label">distance [m]</string>
 </resources>
