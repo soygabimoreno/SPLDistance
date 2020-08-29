@@ -30,5 +30,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
 
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+
+    implementation 'org.koin:koin-androidx-scope:2.1.6'
+    implementation 'org.koin:koin-androidx-viewmodel:2.1.6'
+
     testImplementation 'junit:junit:4.13'
+    testImplementation "io.mockk:mockk:1.10.0"
 }
