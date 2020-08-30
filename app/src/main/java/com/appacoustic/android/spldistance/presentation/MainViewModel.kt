@@ -13,13 +13,13 @@ class MainViewModel(
     val attenuation: LiveData<Float> = _attenuation
 
     init {
-        _attenuation.value = 0f
+        _attenuation.value = null
     }
 
     fun handleDistanceChanged(input: CharSequence?) {
         calculateAttenuation(input)
             .fold({
-                _attenuation.value = 0f
+                _attenuation.value = null
             }, { attenuation ->
                 _attenuation.value = attenuation
             })

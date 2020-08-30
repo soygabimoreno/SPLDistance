@@ -7,7 +7,7 @@ import org.junit.Test
 class CalculateAttenuationTest {
 
     @Test
-    fun `A distance of 0 meters generates an attenuation of Infinite`() {
+    fun `A distance of 0 meters generates an attenuation of -Infinite`() {
         val distance = "0"
         val calculateAttenuation = CalculateAttenuation()
 
@@ -20,7 +20,33 @@ class CalculateAttenuationTest {
     }
 
     @Test
-    fun `A distance of 1 meter generates an attenuation of -0 dB`() {
+    fun `A empty distance doesn't generate a valid attenuation`() {
+        val distance = ""
+        val calculateAttenuation = CalculateAttenuation()
+
+        calculateAttenuation(distance)
+            .fold({
+                assertTrue(CalculateAttenuation.InputNotFilledException == it)
+            }, {
+                fail()
+            })
+    }
+
+    @Test
+    fun `A null distance doesn't generate a valid attenuation`() {
+        val distance = null
+        val calculateAttenuation = CalculateAttenuation()
+
+        calculateAttenuation(distance)
+            .fold({
+                assertTrue(CalculateAttenuation.InputNotFilledException == it)
+            }, {
+                fail()
+            })
+    }
+
+    @Test
+    fun `A distance of 1 meter generates an attenuation of 0 dB`() {
         val distance = "1"
         val calculateAttenuation = CalculateAttenuation()
 

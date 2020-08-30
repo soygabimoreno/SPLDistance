@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel.attenuation.observe(this, { attenuation ->
-            tvAttenuationResult.text = attenuation.toString()
+            tvAttenuationResult.text = attenuation?.toString() ?: "?"
         })
     }
 
