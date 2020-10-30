@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SPL Distance</string>
+    <string name="app_name">SPL distance</string>
     <string name="distance_label">Distance [m]</string>
     <string name="distance_hint">Enter the distance in meters…</string>
     <string name="attenuation_label">Attenuation [dB]</string>
