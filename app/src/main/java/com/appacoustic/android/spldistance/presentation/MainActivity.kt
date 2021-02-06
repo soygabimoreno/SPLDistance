@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         }, 500)
 
         etDistance.setOnTextChangedListener { input ->
-            throw Exception("FOO")
             viewModel.handleDistanceChanged(input)
         }
     }
