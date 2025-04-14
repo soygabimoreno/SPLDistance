@@ -9,8 +9,8 @@ class MainViewModel(
     private val calculateAttenuation: CalculateAttenuation
 ) : ViewModel() {
 
-    private var _attenuation = MutableLiveData<Float>()
-    val attenuation: LiveData<Float> = _attenuation
+    private var _attenuation = MutableLiveData<Float?>()
+    val attenuation: LiveData<Float?> = _attenuation
 
     init {
         _attenuation.value = null
