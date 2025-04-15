@@ -1,5 +1,5 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlin.android)
@@ -33,7 +33,7 @@ android {
         minSdk = 23
         targetSdk = 35
         versionCode = 7
-        versionName = "3.1.2"
+        versionName = "4.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
